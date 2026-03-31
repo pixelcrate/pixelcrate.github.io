@@ -17,7 +17,7 @@ def slugify(name: str) -> str:
 
 
 def build_payload(name):
-    full_name = f"PixelVault {name}"
+    full_name = f"{name}-PixelVault"
     nameid = slugify(full_name)
 
     payload = {
@@ -30,8 +30,8 @@ def build_payload(name):
     }
 
     # default categories/tags (edit if needed)
-    categories = ["1", "2"]
-    tags = ["375", "885"]
+    categories = ["1", "11"]
+    tags = ["745", "747"]
 
     # array-style fields
     data = []
@@ -117,24 +117,20 @@ def submit_metadata(session, game_id, name):
     print("Metadata:", resp.status_code)
 
 
-def workflow(name, zip_num, session):
+def makegame(name, zip_num, session):
     # Step 1: create game
-    game_id = create_game(session, name)
-    print("id:", game_id)
+    id = create_game(session, name)
+    print("id:", id)
 
     # Step 2: get gameid
-    gameid = get_gameid(session, game_id)
+    gameid = get_gameid(session, id)
     print("gameid:", gameid)
 
-    # Step 3: upload zip
-    upload_zip(session, game_id, gameid, zip_num)
+    submit_metadata(session, id, name)
 
-    # Step 4: submit metadata
-    submit_metadata(session, game_id, name)
+    store.append(f"ZIP: {zip_num}, NAME: {name}, ID: {id}, GAME: {gameid}")
 
-    store.append(f"ZIP: {zip_num}, NAME: {name}, ID: {game_id}, GAME: {gameid}")
-
-    print("Done.")
+    return (id, gameid)
 
 def get_session():
     session = requests.Session()
@@ -153,4 +149,3 @@ if __name__ == "__main__":
 
     name = input("Game name: ")
     zip_num = input("Zip number (zip/{num}.zip): ")
-    workflow(name, zip_num, session)

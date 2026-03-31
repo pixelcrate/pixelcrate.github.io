@@ -3,28 +3,36 @@ import dump
 import build
 import os
 import upload
+import ads
 import title
 
 GAMES = 781
 
-loggedin, session = upload.get_session()
-
-for i in range(GAMES):
+def main(i):
     if not os.path.exists(f"crawler/{i}"):
         game_id = id.get_monitize(i)
         if not game_id:
             dump.dump_stack(i)
         else:
             print(f"Game #{i} had ads")
-            continue
+            return
+    else:
+        print(f"Game #{i} already crawled")
     if not os.path.exists(f"zip/{i}.zip"):
         build.main(i)
-        if not loggedin:
-            print(f"Succesfully built game #{i}")
+        print(f"Succesfully built game #{i}")
     else:
-        if not loggedin:
-            print(f"Game #{i} already built")
+        print(f"Game #{i} already built")
+    loggedin, session = upload.get_session()
     if loggedin:
-        if i > 1:
-            upload.workflow(title.get_title(f"zip/{i}.zip"), i, session)
-            print(f"Succesfully built and uploaded game #{i}")
+        mid, gameid = upload.makegame(title.get_title(f"zip/{i}.zip"), i, session)
+        ads.wrap(i, gameid)
+        upload.upload_zip(session, mid, gameid, i)
+        print(f"Succesfully built and uploaded game #{i}")
+    else:
+        print("Not logged in")
+if __name__ == "__main__":
+    # for i in range(GAMES):
+    #     main(i)
+    pass
+main(2)

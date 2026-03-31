@@ -3,7 +3,7 @@ import zipfile
 from pathlib import Path
 import shutil
 
-def wrap_game_zip(num: int, game_id: str):
+def wrap(num: int, game_id: str):
     zip_path = Path(f"zip/{num}.zip")
     if not zip_path.exists():
         raise FileNotFoundError(f"{zip_path} does not exist")
@@ -107,7 +107,7 @@ function resumeGame() {{
 }}
 
 window.onload = function() {{
-            showBanner();
+    sdk.showBanner();
 }};
 </script>
 
@@ -131,3 +131,5 @@ window.onload = function() {{
 
 
 # Example usage:
+if __name__ == "__main__":
+    wrap(input('Zip ID? '), input('Game ID? '))
