@@ -1,4 +1,19 @@
-<!DOCTYPE html>
+import os
+from pathlib import Path
+
+def wrap_html(file_path: str):
+    original = Path(file_path)
+
+    if not original.exists() or original.suffix.lower() != ".html":
+        raise ValueError("Input must be an existing .html file")
+
+    game_file = original.with_name("game.html")
+    index_file = original.with_name("index.html")
+
+    # Rename original → game.html
+    os.rename(original, game_file)
+
+    wrapper_html = """<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -81,3 +96,13 @@ function resumeGame() {
 
 </body>
 </html>
+"""
+
+    with open(index_file, "w", encoding="utf-8") as f:
+        f.write(wrapper_html)
+
+    print(f"Created {index_file} and moved original to {game_file}")
+
+
+# Example usage:
+wrap_html("zip/game.html")
