@@ -1,0 +1,9 @@
+.vscode/settings.json
+crawler
+cache
+games
+zip
+login.py
+__pycache__
+.venv
+.DS_Store
