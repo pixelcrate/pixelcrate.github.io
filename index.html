@@ -45,21 +45,18 @@
 
 <script type="text/javascript">
 window.SDK_OPTIONS = {
-   gameId: "your_game_id_here",
+   gameId: "38hq4lnuk5njkl05w3i9txs5yuvzylcl",
    onEvent: function (a) {
       switch (a.name) {
          case "SDK_GAME_START":
             resumeGame();
             break;
-
          case "SDK_GAME_PAUSE":
             console.log("SDK_GAME_PAUSE");
             break;
-
          case "SDK_READY":
             console.log("SDK_READY");
             break;
-
          default:
             console.log("SDK event:", a.name);
             break;

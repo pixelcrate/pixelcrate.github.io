@@ -56,57 +56,7 @@
   100% {
     transform: translateX(0);
   }
-}</style><style>.animated,animated.hinge,.animated.flipOutX,.animated.flipOutY,.animated.bounceIn,.animated.bounceOut,.animated.flipOutXX,.animated.flipInXX,.animated.flipInYY,.animated.flipOutYY{-webkit-animation-duration: 0.7s !important;animation-duration: 0.7s !important;}</style><script type="text/javascript" src="lzma.js"></script><script type="text/javascript" src="unlockalllevels.js"></script><script type="text/javascript" src="websdkwrapper.js"></script><script type="text/javascript" src="ovo-level-editor.js"></script><link rel="stylesheet" type="text/css" href="style.css"><link href="fonts.css" rel="stylesheet" type="text/css"><link href="./fonts.css" rel="stylesheet" type="text/css"><link href="./fonts.css" rel="stylesheet" type="text/css">
-<script>
-// --- AUDIO MUTE SYSTEM ---
-function muteGameAudio() {
-    document.querySelectorAll('audio,video').forEach(el => el.pause());
-    console.log('Game audio muted');
-}
-
-function unmuteGameAudio() {
-    document.querySelectorAll('audio,video').forEach(el => el.play().catch(() => {}));
-    console.log('Game audio unmuted');
-}
-
-// --- SDK INTEGRATION ---
-window.SDK_OPTIONS = {
-    gameId: "38hq4lnuk5njkl05w3i9txs5yuvzylcl",
-    onEvent: function(event) {
-        switch(event.name) {
-            case "SDK_GAME_PAUSE":
-                muteGameAudio();
-                break;
-            case "SDK_GAME_START":
-                unmuteGameAudio();
-                break;
-            case "SDK_READY":
-                if(typeof sdk !== 'undefined' && sdk.showBanner !== 'undefined'){
-                    sdk.showBanner(); // auto-show ad on load
-                }
-                break;
-        }
-    }
-};
-
-// Inject SDK
-(function(d, t, id){
-    var s = d.getElementsByTagName(t)[0];
-    if(!d.getElementById(id)){
-        var js = d.createElement(t);
-        js.id = id;
-        js.src = "https://api.gamemonetize.com/sdk.js";
-        s.parentNode.insertBefore(js, s);
-    }
-})(document,"script","gamemonetize-sdk");
-
-// Auto-mute immediately until ad finishes
-window.addEventListener('load', () => {
-    muteGameAudio();
-});
-</script>
-
-</head>
+}</style><style>.animated,animated.hinge,.animated.flipOutX,.animated.flipOutY,.animated.bounceIn,.animated.bounceOut,.animated.flipOutXX,.animated.flipInXX,.animated.flipInYY,.animated.flipOutYY{-webkit-animation-duration: 0.7s !important;animation-duration: 0.7s !important;}</style><script type="text/javascript" src="lzma.js"></script><script type="text/javascript" src="unlockalllevels.js"></script><script type="text/javascript" src="websdkwrapper.js"></script><script type="text/javascript" src="ovo-level-editor.js"></script><link rel="stylesheet" type="text/css" href="style.css"><link href="fonts.css" rel="stylesheet" type="text/css"><link href="./fonts.css" rel="stylesheet" type="text/css"><link href="./fonts.css" rel="stylesheet" type="text/css"></head>
 <body>
   
 

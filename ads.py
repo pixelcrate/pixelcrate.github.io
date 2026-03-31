@@ -1,49 +1,65 @@
 import os
+import zipfile
 from pathlib import Path
+import shutil
 
-def wrap_html(file_path: str):
-    original = Path(file_path)
+def wrap_game_zip(num: int, game_id: str):
+    zip_path = Path(f"zip/{num}.zip")
+    if not zip_path.exists():
+        raise FileNotFoundError(f"{zip_path} does not exist")
 
-    if not original.exists() or original.suffix.lower() != ".html":
-        raise ValueError("Input must be an existing .html file")
+    # Temporary extraction folder
+    temp_dir = Path(f"temp_{num}")
+    if temp_dir.exists():
+        shutil.rmtree(temp_dir)
+    temp_dir.mkdir(parents=True)
 
-    game_file = original.with_name("game.html")
-    index_file = original.with_name("index.html")
+    # Extract ZIP
+    with zipfile.ZipFile(zip_path, "r") as zip_ref:
+        zip_ref.extractall(temp_dir)
 
-    # Rename original → game.html
-    os.rename(original, game_file)
+    original_html = temp_dir / "index.html"
+    if not original_html.exists():
+        raise FileNotFoundError("index.html not found in the ZIP")
 
-    wrapper_html = """<!DOCTYPE html>
+    game_html = temp_dir / "game.html"
+    index_html = temp_dir / "index.html"  # wrapper will overwrite this
+
+    # Rename original index.html → game.html
+    original_html.rename(game_html)
+
+    # Create wrapper index.html
+    wrapper_html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Game Wrapper</title>
     <style>
-        html, body {
+        html, body {{
             margin: 0;
             padding: 0;
             height: 100%;
             background: #000;
-        }
-        #ad-container {
+        }}
+        #ad-container {{
             width: 100%;
             height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
             background: black;
-        }
-        #game-container {
+        }}
+        #game-container {{
             width: 100%;
             height: 100%;
             display: none;
-        }
-        iframe, video {
+        }}
+        iframe, video {{
             width: 100%;
             height: 100%;
             border: none;
             object-fit: cover;
-        }
+        }}
     </style>
 </head>
 <body>
@@ -59,50 +75,55 @@ def wrap_html(file_path: str):
 </div>
 
 <script type="text/javascript">
-window.SDK_OPTIONS = {
-   gameId: "your_game_id_here",
-   onEvent: function (a) {
-      switch (a.name) {
+window.SDK_OPTIONS = {{
+   gameId: "{game_id}",
+   onEvent: function (a) {{
+      switch (a.name) {{
          case "SDK_GAME_START":
             resumeGame();
             break;
-
          case "SDK_GAME_PAUSE":
             console.log("SDK_GAME_PAUSE");
             break;
-
          case "SDK_READY":
             console.log("SDK_READY");
             break;
-
          default:
             console.log("SDK event:", a.name);
             break;
-      }
-   }
-};
+      }}
+   }}
+}};
 
-(function (a, b, c) {
+(function (a, b, c) {{
    var d = a.getElementsByTagName(b)[0];
    a.getElementById(c) || (a = a.createElement(b), a.id = c, a.src = "https://api.gamemonetize.com/sdk.js", d.parentNode.insertBefore(a, d))
-})(document, "script", "gamemonetize-sdk");
+}})(document, "script", "gamemonetize-sdk");
 
-function resumeGame() {
+function resumeGame() {{
     document.getElementById("ad-container").style.display = "none";
     document.getElementById("game-frame").src = "game.html";
     document.getElementById("game-container").style.display = "block";
-}
+}}
 </script>
 
 </body>
 </html>
 """
 
-    with open(index_file, "w", encoding="utf-8") as f:
-        f.write(wrapper_html)
+    # Write wrapper index.html
+    index_html.write_text(wrapper_html, encoding="utf-8")
 
-    print(f"Created {index_file} and moved original to {game_file}")
+    # Create a new ZIP with the same name, containing index.html and game.html
+    new_zip_path = zip_path
+    with zipfile.ZipFile(new_zip_path, "w", zipfile.ZIP_DEFLATED) as zipf:
+        zipf.write(index_html, "index.html")
+        zipf.write(game_html, "game.html")
+
+    # Cleanup temporary folder
+    shutil.rmtree(temp_dir)
+
+    print(f"Wrapped {zip_path} with SDK and recreated index.html/game.html in ZIP.")
 
 
 # Example usage:
-wrap_html("zip/game.html")

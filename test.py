@@ -1,6 +1,7 @@
 import build
 import package
 import os
+import ads
 
 try:
     os.remove("zip/1.zip")
@@ -8,7 +9,7 @@ try:
 except:
     pass
 build.main(1)
-package.process_zip(1, "38hq4lnuk5njkl05w3i9txs5yuvzylcl")
+ads.wrap_game_zip(1, "38hq4lnuk5njkl05w3i9txs5yuvzylcl")
 import zipfile
 from pathlib import Path
 
