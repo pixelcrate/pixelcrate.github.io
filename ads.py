@@ -33,7 +33,7 @@ def wrap_game_zip(num: int, game_id: str):
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Game Wrapper</title>
+    <title>Pixel Crate</title>
     <style>
         html, body {{
             margin: 0;
@@ -105,6 +105,10 @@ function resumeGame() {{
     document.getElementById("game-frame").src = "game.html";
     document.getElementById("game-container").style.display = "block";
 }}
+
+window.onload = function() {{
+            showBanner();
+}};
 </script>
 
 </body>
