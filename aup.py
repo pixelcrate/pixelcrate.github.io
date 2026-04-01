@@ -1,7 +1,9 @@
+#!/usr/bin/env python3
+import sys
+import os
 import id
 import dump
 import build
-import os
 import upload
 import ads
 import title
@@ -18,11 +20,13 @@ def main(i):
             return
     else:
         print(f"Game #{i} already crawled")
+
     if not os.path.exists(f"zip/{i}.zip"):
         build.main(i)
         print(f"Succesfully built game #{i}")
     else:
         print(f"Game #{i} already built")
+
     loggedin, session = upload.get_session()
     if loggedin:
         mid, gameid = upload.makegame(title.get_title(f"zip/{i}.zip"), i, session)
@@ -31,7 +35,16 @@ def main(i):
         print(f"Succesfully built and uploaded game #{i}")
     else:
         print("Not logged in")
+
 if __name__ == "__main__":
-    for i in range(GAMES):
-        if i > 3:
-            main(i)
+    if len(sys.argv) != 2:
+        print(f"Usage: {sys.argv[0]} <game_number>")
+        sys.exit(1)
+    
+    try:
+        game_number = int(sys.argv[1])
+    except ValueError:
+        print("Please provide a valid integer for the game number.")
+        sys.exit(1)
+    
+    main(game_number)
