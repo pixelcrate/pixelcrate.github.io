@@ -39,87 +39,58 @@ def wrap(num: int, game_id: str):
             margin: 0;
             padding: 0;
             height: 100%;
+            width: 100%;
             background: #000;
         }}
-        #ad-container {{
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: black;
-        }}
-        video {{
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        iframe {{
+            border: none;
         }}
     </style>
 </head>
 <body>
 
-<div id="ad-container">
-    <video id="ad-video" autoplay muted playsinline>
-        <source src="ad.mp4" type="video/mp4">
-    </video>
-</div>
-
 <script>
-let gameStarted = false;
-
-function openGame() {{
-    if (gameStarted) return;
-    gameStarted = true;
-
-    // Open in new tab
-    const win = window.open("game.html", "_blank");
-
-    // Attempt fullscreen (only works if browser allows)
-    if (win) {{
-        try {{
-            win.focus();
-        }} catch (e) {{}}
-    }}
-}}
-
 window.SDK_OPTIONS = {{
-   gameId: "{game_id}",
-   onEvent: function (a) {{
-      switch (a.name) {{
-         case "SDK_GAME_START":
-            openGame();
-            break;
-         case "SDK_READY":
-            console.log("SDK_READY");
-            break;
-         default:
-            console.log("SDK event:", a.name);
-            break;
-      }}
-   }}
+    gameId: "{game_id}",
+    onEvent: function(a) {{
+        switch (a.name) {{
+            case "SDK_GAME_START":
+                // Load game.html in same-origin iframe
+                if (!document.getElementById("game-iframe")) {{
+                    const iframe = document.createElement("iframe");
+                    iframe.id = "game-iframe";
+                    iframe.src = "game.html";
+                    iframe.style.position = "absolute";
+                    iframe.style.top = "0";
+                    iframe.style.left = "0";
+                    iframe.style.width = "100%";
+                    iframe.style.height = "100%";
+                    document.body.appendChild(iframe);
+                }}
+                break;
+            case "SDK_READY":
+                console.log("SDK_READY");
+                break;
+            default:
+                console.log("SDK event:", a.name);
+        }}
+    }}
 }};
 
-(function (a, b, c) {{
-   var d = a.getElementsByTagName(b)[0];
-   if (!a.getElementById(c)) {{
-       var s = a.createElement(b);
-       s.id = c;
-       s.src = "https://api.gamemonetize.com/sdk.js";
-       d.parentNode.insertBefore(s, d);
-   }}
-}})(document, "script", "gamemonetize-sdk");
+// Load SDK
+(function(a,b,c){{
+    var d = a.getElementsByTagName(b)[0];
+    if(!a.getElementById(c)){{
+        var s = a.createElement(b);
+        s.id = c;
+        s.src = "https://api.gamemonetize.com/sdk.js";
+        d.parentNode.insertBefore(s,d);
+    }}
+}})(document,"script","gamemonetize-sdk");
 
 window.onload = function() {{
-    const video = document.getElementById("ad-video");
-
-    // Fallback if SDK doesn't trigger
-    video.onended = openGame;
-
-    // Optional: safety timeout (uncomment if needed)
-    // setTimeout(openGame, 8000);
-
-    if (typeof sdk !== "undefined") {{
-        sdk.showBanner();
+    if(typeof sdk !== "undefined") {{
+        sdk.showBanner(); // SDK handles ads
     }}
 }};
 </script>
@@ -139,7 +110,7 @@ window.onload = function() {{
     # Cleanup
     shutil.rmtree(temp_dir)
 
-    print(f"Wrapped {zip_path} with ad + new-tab game launch.")
+    print(f"Wrapped {zip_path} with SDK-controlled iframe game load.")
 
 
 # Example usage
