@@ -19,7 +19,7 @@ for entry in data:
             "zip": int(zip_code),
             "name": name.strip(),
             "id": int(game_id),
-            "game": f"https://html5.gamemonetize.com/{game_key.strip()}/",
+            "game": f"https://uncached.gamemonetize.com/{game_key.strip()}/",
             "error": None
         })
     else:
