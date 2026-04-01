@@ -17,7 +17,7 @@ def slugify(name: str) -> str:
 
 
 def build_payload(name):
-    full_name = f"{name}-PixelVault"
+    full_name = f"{name}-PixelCrate"
     nameid = slugify(full_name)
 
     payload = {
@@ -25,7 +25,7 @@ def build_payload(name):
         "nameid": nameid,
         "width": "800",
         "height": "600",
-        "desc": f"Play {full_name}, a fast-paced browser game with simple controls and fun gameplay.",
+        "desc": f"Play {full_name}, a fast-paced browser game with simple controls and fun gameplay. {full_name} is one of the best rated browser games to play!",
         "submit": ""
     }
 
@@ -50,7 +50,7 @@ def build_payload(name):
 # ---------- CORE FLOW ----------
 
 def create_game(session, name):
-    full_name = f"{name}-PixelVault"
+    full_name = f"{name}-PixelCrate"
     nameid = slugify(full_name)
 
     resp = session.post(

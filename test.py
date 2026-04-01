@@ -1,25 +1,22 @@
-# import build
-# import package
-# import os
-# import ads
+import build
+import ads
+import os
 
-# try:
-#     os.remove("zip/1.zip")
-#     os.remove("zip/index.html")
-# except:
-#     pass
-# build.main(1)
-# ads.wrap(1, "38hq4lnuk5njkl05w3i9txs5yuvzylcl")
-# import zipfile
-# from pathlib import Path
+try:
+    os.remove("zip/5.zip")
+    os.remove("zip/index.html")
+    os.remove("zip/game.html")
+except:
+    pass
+build.main(5)
+ads.wrap(5, "99oz3b678714l1sru7lucqnokxcdhbvn")
+import zipfile
+from pathlib import Path
 
-# zip_path = Path("zip/1.zip")  # replace with your zip file name
-# extract_to = zip_path.parent      # same folder as the zip
+zip_path = Path("zip/5.zip")  # replace with your zip file name
+extract_to = zip_path.parent      # same folder as the zip
 
-# with zipfile.ZipFile(zip_path, 'r') as zip_ref:
-#     zip_ref.extractall(extract_to)
+with zipfile.ZipFile(zip_path, 'r') as zip_ref:
+    zip_ref.extractall(extract_to)
 
-# print("Extraction complete.")
-
-import upload
-print(upload.get_session())
+print("Extraction complete.")
