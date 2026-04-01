@@ -64,6 +64,11 @@
 </header>
 
 <main>
+    <div id="gameLookup">
+        <input type="text" id="gameIdInput" placeholder="Enter game ID (zip number)..." />
+        <button onclick="lookupGame()">Go</button>
+    </div>
+
     <details id="featuredGamesWrapper" open>
         <summary id="featuredGamesSummary">Featured Games</summary>
         <div id="featuredGames" class="game-container"></div>
@@ -101,7 +106,7 @@
     </div>
 </footer>
 
-<script src="script.js"></script>
+<script src="main.js"></script>
 <script>
     navigator.serviceWorker.register(location.protocol + '//' + location.hostname + '/sw.js')
 </script>
