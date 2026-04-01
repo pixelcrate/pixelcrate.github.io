@@ -15,7 +15,7 @@ for entry in data:
     if match:
         zip_code, name, game_id, game_key = match.groups()
         cleaned_data.append({
-            "icon": None,
+            "icon": f"https://cdn.jsdelivr.net/gh/gn-math/covers@main/{int(zip_code)}.png",
             "zip": int(zip_code),
             "name": name.strip(),
             "id": int(game_id),

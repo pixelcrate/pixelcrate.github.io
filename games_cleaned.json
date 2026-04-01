@@ -1,6 +1,6 @@
 [
     {
-        "icon": null,
+        "icon": "https://cdn.jsdelivr.net/gh/gn-math/covers@main/1.png",
         "zip": 1,
         "name": "OvO",
         "id": 77697,
@@ -8,7 +8,7 @@
         "error": null
     },
     {
-        "icon": null,
+        "icon": "https://cdn.jsdelivr.net/gh/gn-math/covers@main/2.png",
         "zip": 2,
         "name": "OvO 2",
         "id": 77737,
@@ -16,7 +16,7 @@
         "error": null
     },
     {
-        "icon": null,
+        "icon": "https://cdn.jsdelivr.net/gh/gn-math/covers@main/3.png",
         "zip": 3,
         "name": "OvO Dimensions",
         "id": 77812,
@@ -24,7 +24,7 @@
         "error": null
     },
     {
-        "icon": null,
+        "icon": "https://cdn.jsdelivr.net/gh/gn-math/covers@main/4.png",
         "zip": 4,
         "name": "Gladihoppers",
         "id": 77813,
@@ -32,7 +32,7 @@
         "error": null
     },
     {
-        "icon": null,
+        "icon": "https://cdn.jsdelivr.net/gh/gn-math/covers@main/5.png",
         "zip": 5,
         "name": "Ice Dodo - Play Online at Onionfist.com",
         "id": 77814,
@@ -40,7 +40,7 @@
         "error": null
     },
     {
-        "icon": null,
+        "icon": "https://cdn.jsdelivr.net/gh/gn-math/covers@main/6.png",
         "zip": 6,
         "name": "Block Blast Puzzle",
         "id": 77818,
@@ -48,7 +48,7 @@
         "error": null
     },
     {
-        "icon": null,
+        "icon": "https://cdn.jsdelivr.net/gh/gn-math/covers@main/7.png",
         "zip": 7,
         "name": "Jetpack Joyride",
         "id": 77820,
@@ -56,7 +56,7 @@
         "error": null
     },
     {
-        "icon": null,
+        "icon": "https://cdn.jsdelivr.net/gh/gn-math/covers@main/8.png",
         "zip": 8,
         "name": "Friday Night Funkin'",
         "id": 77821,
@@ -64,7 +64,7 @@
         "error": null
     },
     {
-        "icon": null,
+        "icon": "https://cdn.jsdelivr.net/gh/gn-math/covers@main/9.png",
         "zip": 9,
         "name": "Sprunki",
         "id": 77822,
@@ -72,7 +72,7 @@
         "error": null
     },
     {
-        "icon": null,
+        "icon": "https://cdn.jsdelivr.net/gh/gn-math/covers@main/10.png",
         "zip": 10,
         "name": "Temple Run 2",
         "id": 77823,
@@ -96,7 +96,7 @@
         "error": "Game 12 failed with exception: [Errno 2] No such file or directory: 'crawler/12/cdn.jsdelivr.net/gh/%67%6e%2d%6d%61%74%68/html@main'"
     },
     {
-        "icon": null,
+        "icon": "https://cdn.jsdelivr.net/gh/gn-math/covers@main/13.png",
         "zip": 13,
         "name": "AttackHole",
         "id": 77826,
@@ -104,7 +104,7 @@
         "error": null
     },
     {
-        "icon": null,
+        "icon": "https://cdn.jsdelivr.net/gh/gn-math/covers@main/14.png",
         "zip": 14,
         "name": "YT Game Wrapper WebGL Template",
         "id": 77827,
@@ -112,7 +112,7 @@
         "error": null
     },
     {
-        "icon": null,
+        "icon": "https://cdn.jsdelivr.net/gh/gn-math/covers@main/15.png",
         "zip": 15,
         "name": "ColorWaterSort3D",
         "id": 77828,
@@ -128,7 +128,7 @@
         "error": "Game 16 failed with exception: Failed to get game id"
     },
     {
-        "icon": null,
+        "icon": "https://cdn.jsdelivr.net/gh/gn-math/covers@main/17.png",
         "zip": 17,
         "name": "PI Playables",
         "id": 77829,
@@ -160,7 +160,7 @@
         "error": "Game 20 failed with exception: Failed to get game id"
     },
     {
-        "icon": null,
+        "icon": "https://cdn.jsdelivr.net/gh/gn-math/covers@main/21.png",
         "zip": 21,
         "name": "Turbo Stars",
         "id": 77830,
@@ -168,7 +168,7 @@
         "error": null
     },
     {
-        "icon": null,
+        "icon": "https://cdn.jsdelivr.net/gh/gn-math/covers@main/23.png",
         "zip": 23,
         "name": "Pou",
         "id": 77834,
@@ -176,7 +176,7 @@
         "error": null
     },
     {
-        "icon": null,
+        "icon": "https://cdn.jsdelivr.net/gh/gn-math/covers@main/24.png",
         "zip": 24,
         "name": "Crossy Road",
         "id": 77835,
@@ -200,7 +200,7 @@
         "error": "Game 26 failed with exception: Failed to get game id"
     },
     {
-        "icon": null,
+        "icon": "https://cdn.jsdelivr.net/gh/gn-math/covers@main/27.png",
         "zip": 27,
         "name": "Geometry Dash",
         "id": 77836,
@@ -208,7 +208,7 @@
         "error": null
     },
     {
-        "icon": null,
+        "icon": "https://cdn.jsdelivr.net/gh/gn-math/covers@main/28.png",
         "zip": 28,
         "name": "Play Basketball FRVR - Free Basketball Hoop Shooter",
         "id": 77837,
@@ -216,7 +216,7 @@
         "error": null
     },
     {
-        "icon": null,
+        "icon": "https://cdn.jsdelivr.net/gh/gn-math/covers@main/29.png",
         "zip": 29,
         "name": "",
         "id": 77838,
@@ -232,7 +232,7 @@
         "error": "Game 29 failed with exception: exceptions must derive from BaseException"
     },
     {
-        "icon": null,
+        "icon": "https://cdn.jsdelivr.net/gh/gn-math/covers@main/30.png",
         "zip": 30,
         "name": "Bottle Jump 3D",
         "id": 77839,
@@ -248,7 +248,7 @@
         "error": "Game 31 failed with exception: Failed to get game id"
     },
     {
-        "icon": null,
+        "icon": "https://cdn.jsdelivr.net/gh/gn-math/covers@main/32.png",
         "zip": 32,
         "name": "Dig Deep",
         "id": 77840,
@@ -256,7 +256,7 @@
         "error": null
     },
     {
-        "icon": null,
+        "icon": "https://cdn.jsdelivr.net/gh/gn-math/covers@main/33.png",
         "zip": 33,
         "name": "Retro Bowl",
         "id": 77841,
@@ -264,7 +264,7 @@
         "error": null
     },
     {
-        "icon": null,
+        "icon": "https://cdn.jsdelivr.net/gh/gn-math/covers@main/34.png",
         "zip": 34,
         "name": "Retro Bowl College",
         "id": 77842,
@@ -280,7 +280,7 @@
         "error": "Game 35 failed with exception: [Errno 2] No such file or directory: 'crawler/35/cdn.jsdelivr.net/gh/%67%6e%2d%6d%61%74%68/html@main'"
     },
     {
-        "icon": null,
+        "icon": "https://cdn.jsdelivr.net/gh/gn-math/covers@main/36.png",
         "zip": 36,
         "name": "Monster Tracks",
         "id": 77843,
@@ -288,7 +288,7 @@
         "error": null
     },
     {
-        "icon": null,
+        "icon": "https://cdn.jsdelivr.net/gh/gn-math/covers@main/37.png",
         "zip": 37,
         "name": "Gobble",
         "id": 77844,
@@ -296,7 +296,7 @@
         "error": null
     },
     {
-        "icon": null,
+        "icon": "https://cdn.jsdelivr.net/gh/gn-math/covers@main/38.png",
         "zip": 38,
         "name": "Five Nights at Freddy's 1",
         "id": 77845,
@@ -304,7 +304,7 @@
         "error": null
     },
     {
-        "icon": null,
+        "icon": "https://cdn.jsdelivr.net/gh/gn-math/covers@main/39.png",
         "zip": 39,
         "name": "Five Nights at Freddy's 2",
         "id": 77846,
@@ -312,7 +312,7 @@
         "error": null
     },
     {
-        "icon": null,
+        "icon": "https://cdn.jsdelivr.net/gh/gn-math/covers@main/40.png",
         "zip": 40,
         "name": "Five Nights at Freddy's 3",
         "id": 77847,
@@ -320,7 +320,7 @@
         "error": null
     },
     {
-        "icon": null,
+        "icon": "https://cdn.jsdelivr.net/gh/gn-math/covers@main/41.png",
         "zip": 41,
         "name": "Five Nights at Freddy's 4",
         "id": 77848,
@@ -336,7 +336,7 @@
         "error": "Game 42 failed with exception: Failed to get game id"
     },
     {
-        "icon": null,
+        "icon": "https://cdn.jsdelivr.net/gh/gn-math/covers@main/43.png",
         "zip": 43,
         "name": "Driven Wild! 🚗🌴",
         "id": 77849,
