@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PixelCrate — Game</title>
+    <link rel="stylesheet" href="/style.css" />
+    <meta name="theme-color" content="#fb2651" />
+    <style>
+        #gamePageContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1.5rem 2rem;
+        }
+        #gamePageTitle {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #fb2651;
+            margin-bottom: 0.5rem;
+        }
+        #gamePageNewTab {
+            padding: 0.4rem 1rem;
+            background-color: #fb2651;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            margin-bottom: 1rem;
+            text-decoration: none;
+        }
+        #gamePageNewTab:hover {
+            background-color: #d41e41;
+        }
+        #gamePageFrame {
+            width: 90vw;
+            max-width: 1200px;
+            height: 75vh;
+            border: none;
+            border-radius: 10px;
+            background: #000;
+        }
+        #gamePageError {
+            color: #bbb;
+            font-size: 1.1rem;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+<body class="dark-mode">
+<header>
+    <div class="header-content">
+        <a href="/" style="text-decoration:none;">
+            <div class="logo">PixelCrate</div>
+        </a>
+    </div>
+</header>
+
+<main>
+    <div id="gamePageContainer">
+        <div id="gamePageTitle">Loading...</div>
+        <a id="gamePageNewTab" target="_blank" rel="noopener noreferrer" style="display:none;">Open in New Tab</a>
+        <iframe id="gamePageFrame" allowfullscreen></iframe>
+        <div id="gamePageError" style="display:none;"></div>
+    </div>
+</main>
+
+<script>
+    (function () {
+        var params = new URLSearchParams(window.location.search);
+        var zip = parseInt(params.get('id'), 10);
+
+        var titleEl = document.getElementById('gamePageTitle');
+        var linkEl = document.getElementById('gamePageNewTab');
+        var frameEl = document.getElementById('gamePageFrame');
+        var errorEl = document.getElementById('gamePageError');
+
+        function showError(msg) {
+            titleEl.textContent = 'Error';
+            frameEl.style.display = 'none';
+            errorEl.textContent = msg;
+            errorEl.style.display = 'block';
+        }
+
+        if (isNaN(zip)) {
+            showError('Invalid game ID.');
+            return;
+        }
+
+        fetch('/games_cleaned.json')
+            .then(function (res) {
+                if (!res.ok) throw new Error('Failed to load games data.');
+                return res.json();
+            })
+            .then(function (games) {
+                var game = games.find(function (g) { return g.zip === zip; });
+                if (!game) {
+                    showError('No game found with ID ' + zip + '.');
+                    return;
+                }
+                document.title = 'PixelCrate \u2014 ' + game.name;
+                titleEl.textContent = game.name;
+                linkEl.href = game.game;
+                linkEl.style.display = 'inline';
+                frameEl.src = game.game;
+            })
+            .catch(function (err) {
+                showError(err.message);
+            });
+    })();
+</script>
+</body>
+</html>

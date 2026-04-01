@@ -1,3 +1,5 @@
+let allGames = [];
+
 document.addEventListener('DOMContentLoaded', function () {
   fetch('games_cleaned.json')
     .then(response => {
@@ -5,19 +7,25 @@ document.addEventListener('DOMContentLoaded', function () {
       return response.json();
     })
     .then(data => {
-      displayGames(data);
+      allGames = data.filter(g => !g.error);
+      displayGames(allGames);
     })
     .catch(error => {
       console.error("Error fetching games data: ", error);
     });
 });
 
+function filterGames() {
+  const query = document.getElementById('searchBar').value.trim().toLowerCase();
+  const filtered = allGames.filter(g => g.name.toLowerCase().includes(query));
+  displayGames(filtered);
+}
+
 function displayGames(games) {
   const gameContainer = document.getElementById('gameContainer');
   gameContainer.innerHTML = '';
 
   games.forEach(game => {
-    if (game.error) return;
 
     const gameCard = document.createElement('div');
     gameCard.classList.add('game-card');
@@ -26,9 +34,10 @@ function displayGames(games) {
       window.location.href = '/games/?id=' + game.zip;
     });
 
-    // Icon placeholder — will be replaced when icons are added
-    const gameIcon = document.createElement('div');
-    gameIcon.classList.add('game-icon-placeholder');
+    const gameIcon = document.createElement('img');
+    gameIcon.src = game.icon;
+    gameIcon.alt = game.name;
+    gameIcon.classList.add('game-icon');
     gameCard.appendChild(gameIcon);
 
     const gameName = document.createElement('h3');

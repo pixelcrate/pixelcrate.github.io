@@ -1,7 +1,6 @@
 .vscode/settings.json
 crawler
 cache
-games
 zip
 login.py
 __pycache__
